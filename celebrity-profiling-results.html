@@ -1,0 +1,90 @@
+<html>
+<head>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"> </script>
+
+    <script>
+
+    $(function()
+    {
+        var person = [];
+            $.getJSON('./results/gt.json', function(data)
+            {
+                $.each(data.ground_truth, function(i, f)
+                {
+                    var tblRow = "<tr>" + "<td>" + f.id + "</td>" +"<td>" + f.occupation + "</td>" + "<td>" + f.gender + "</td>" + "<td>" + f.birthyear + "</td>" + "</tr>"
+                    $(tblRow).appendTo("#userdata tbody");
+            });
+
+        });
+
+    });
+
+    $(function()
+    {
+        var tweets = [];
+            $.getJSON('./results/pred.json', function(data)
+            {
+                $.each(data.prediction, function(i, f)
+                {
+                    var tblRow = "<tr>" + "<td>" + f.id + "</td>" +"<td>" + f.occupation + "</td>" + "<td>" + f.gender + "</td>" +  "<td>" + f.birthyear + "</td>"+"</tr>"
+                    $(tblRow).appendTo("#data tbody");
+            });
+
+        });
+
+    });
+
+
+</script>
+</head>
+<style>
+body {background-color: powderblue;}
+h2   {color: black;}
+p    {color: red;}
+</style>
+<h2>Result table</h2>
+<p> The data consists of 33836 examples out of which 27000 is training data set and 6836 is test data set.</p>
+<p> The following table represents only the first 10 examples with ground-truth labels from the test data set.</p>
+
+<body>
+
+<div class="wrapper">
+    <div class="profile">
+        <table id= "userdata" border="2">
+            <thead style="color:blue;">
+            <th colspan="4">Real values </th>
+            </thead>
+            <tbody>
+
+            <th>Id</th>
+            <th>Occupation</th>
+            <th>Gender</th>
+            <th>birthyear</th>
+
+            </tbody>
+        </table>
+
+    </div>
+</div>
+<p> The following table represents the corresponding 10 examples with predicted labels of the test data set. </p>
+<div class="wrapper">
+    <div class="hi">
+        <table id= "data" border="2">
+            <thead style="color:green;">
+            <th colspan="4">Predicted values</th>
+            </thead>
+            <tbody >
+
+            <th>Id</th>
+            <th>Occupation</th>
+            <th>Gender</th>
+            <th>birthyear</th>
+
+            </tbody>
+        </table>
+
+    </div>
+</div>
+
+</body>
+</html>

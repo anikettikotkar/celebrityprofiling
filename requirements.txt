@@ -1,0 +1,6 @@
+numpy
+scikit-learn
+joblib
+pathlib
+PyQt5
+PyQt5-stubs==5.14.2.0
